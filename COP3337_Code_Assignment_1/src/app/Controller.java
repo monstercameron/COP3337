@@ -66,6 +66,7 @@ public class Controller {
         // Hint: look at the UML Diagram and Constructor of the
         //       Warehouse class
         // WRITE YOUR CODE BELOW THIS LINE
+        Warehouse fiuSouthWarehouse = new Warehouse(address1);
 
 
 
@@ -73,6 +74,7 @@ public class Controller {
         // sending a signal to the  fiuNorthWarehouse instance
         // call the displayAddress method on the fiuSouthWarehouse instance
         // WRITE YOUR CODE BELOW THIS LINE
+        fiuSouthWarehouse.displayAddress();
 
 
 
@@ -91,19 +93,20 @@ public class Controller {
         // state -> "Florids"
         // zipCode -> "33181"
         // WRITE YOUR CODE BELOW THIS LINE
-
+        Address address2 = new Address("3000 NE 151st St", "North Miami Beach", "North Miami Beach", "Florids", "33181");
 
 
 
         // creating a Warehouse instance named fiuNorthWarehouse
         // with the address2 instance
         // WRITE YOUR CODE BELOW THIS LINE
+        Warehouse fiuNorthWarehouse = new Warehouse(address1);
 
 
         // sending a signal to the  fiuNorthWarehouse instance
         // call the displayAddress method on the fiuSouthWarehouse instance
         // WRITE YOUR CODE BELOW THIS LINE
-
+        fiuNorthWarehouse.displayAddress();
 
 
         System.out.println("---------------------------------------");
@@ -119,6 +122,7 @@ public class Controller {
         // Write the code using println that outputs the number of the warehouse that
         // have been created. Hence look for a static method that can do this
         // WRITE YOUR CODE BELOW THIS LINE
+        System.out.println("Number of warehouses created: " + Warehouse.getNumberOfWareHouses());
 
 
 
@@ -134,7 +138,7 @@ public class Controller {
         // Hint: Review the UML diagram of the Controller class... you need to call a method here
         //       Review the code of the class to figure it out
         // WRITE YOUR CODE BELOW THIS LINE
-
+        Controller.createAddItemToWarehouse(fiuNorthWarehouse, 10);
 
 
         System.out.println("---------------------------------------");
