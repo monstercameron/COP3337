@@ -141,11 +141,10 @@ public class Truck {
 
         if (items[0] == null) {
             System.out.println("\t\t\t\t\t\t\t " + "Empty");
-        } else {
-            int counter;
+        } else {;
             for (int i = 0; i < Item.getClassification().length; i++) {
                 String classification = Item.getClassification()[i];
-                counter = 0;
+                int counter = 0;
 
                 for (Item currentItem : items) {
                     String[] tokens = currentItem.getId().split("-");
