@@ -81,7 +81,17 @@ public class Warehouse {
         displayAddress();
         // STEP 7
         // WRITE YOUR CODE BELOW THIS LINE
-
+        System.out.println("Item count:\t" + this.items.size());
+        for (String classification : Item.getClassification()) {
+            int count = 0;
+            for (Item item : items) {
+                if (item.getId().contains("-"+classification+"-")) {
+                    System.out.println("\t\t"+item.getId());
+                    count++;
+                }
+            }
+            System.out.println("\tclassification "+classification+" count: "+count);
+        }
 
 
 

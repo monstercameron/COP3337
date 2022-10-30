@@ -1,6 +1,5 @@
 package app;
 
-
 import Vehicle.Truck;
 import places.Warehouse;
 import things.Address;
@@ -8,14 +7,11 @@ import things.Driver;
 import things.Item;
 import things.Names;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Controller {
 
-    public static void main(String[] args){
-
-
+    public static void main(String[] args) {
 
         System.out.println("---------------------------------------");
         System.out.println("Step 1");
@@ -29,15 +25,13 @@ public class Controller {
 
         yourInfoHeader();
 
-
-
-
         System.out.println("---------------------------------------");
         System.out.println("Step 2");
         System.out.println("---------------------------------------");
         System.out.println();
 
-        // Hint: look at the Address UML diagram and the code in the Address class constructor
+        // Hint: look at the Address UML diagram and the code in the Address class
+        // constructor
 
         // Create and address instance named address1
         // with the following inputs:
@@ -51,34 +45,25 @@ public class Controller {
         // WRITE YOUR CODE BELOW THIS LINE
         Address address1 = new Address("FIU South Warehouse", "11200 SW 8th St", "Miami", "Florids", "33199");
 
-
-
         System.out.println("---------------------------------------");
         System.out.println("Step 3");
         System.out.println("---------------------------------------");
         System.out.println();
 
-        //-----------------------------
+        // -----------------------------
         // STEP 3
-        //-----------------------------
+        // -----------------------------
         // creating a Warehouse instance named fiuSouthWarehouse
         // with the address1 instance
         // Hint: look at the UML Diagram and Constructor of the
-        //       Warehouse class
+        // Warehouse class
         // WRITE YOUR CODE BELOW THIS LINE
         Warehouse fiuSouthWarehouse = new Warehouse(address1);
 
-
-
-
-        // sending a signal to the  fiuNorthWarehouse instance
+        // sending a signal to the fiuNorthWarehouse instance
         // call the displayAddress method on the fiuSouthWarehouse instance
         // WRITE YOUR CODE BELOW THIS LINE
         fiuSouthWarehouse.displayAddress();
-
-
-
-
 
         System.out.println("---------------------------------------");
         System.out.println("Step 4");
@@ -93,21 +78,18 @@ public class Controller {
         // state -> "Florids"
         // zipCode -> "33181"
         // WRITE YOUR CODE BELOW THIS LINE
-        Address address2 = new Address("3000 NE 151st St", "North Miami Beach", "North Miami Beach", "Florids", "33181");
-
-
+        Address address2 = new Address("3000 NE 151st St", "North Miami Beach", "North Miami Beach", "Florids",
+                "33181");
 
         // creating a Warehouse instance named fiuNorthWarehouse
         // with the address2 instance
         // WRITE YOUR CODE BELOW THIS LINE
-        Warehouse fiuNorthWarehouse = new Warehouse(address1);
+        Warehouse fiuNorthWarehouse = new Warehouse(address2);
 
-
-        // sending a signal to the  fiuNorthWarehouse instance
+        // sending a signal to the fiuNorthWarehouse instance
         // call the displayAddress method on the fiuSouthWarehouse instance
         // WRITE YOUR CODE BELOW THIS LINE
-        fiuNorthWarehouse.displayAddress();
-
+        fiuSouthWarehouse.displayAddress();
 
         System.out.println("---------------------------------------");
         System.out.println("Step 5");
@@ -116,30 +98,30 @@ public class Controller {
 
         // IMPORTANT UNDERSTAND THIS STEP
         // example of using something that is classified as static
-        // notice that Warehouse.  <- were are talking to the class here
-        // there is one class entity where with instance you can have 0.... n many instance working
+        // notice that Warehouse. <- were are talking to the class here
+        // there is one class entity where with instance you can have 0.... n many
+        // instance working
         // independently
         // Write the code using println that outputs the number of the warehouse that
         // have been created. Hence look for a static method that can do this
         // WRITE YOUR CODE BELOW THIS LINE
         System.out.println("Number of warehouses created: " + Warehouse.getNumberOfWareHouses());
 
-
-
-
         System.out.println("---------------------------------------");
         System.out.println("Step 6");
         System.out.println("---------------------------------------");
         System.out.println();
-        // Here you are creating some random items and adding them to the fiuNorthWarehouse
-        // this is an example of call-by-reference  -> first parameter and call-by-value -> second parameter
+        // Here you are creating some random items and adding them to the
+        // fiuNorthWarehouse
+        // this is an example of call-by-reference -> first parameter and call-by-value
+        // -> second parameter
         // Question: which entity are you communicating with : instance or class
         // write the code that creates 10 Items and adds them to the fiuNorthWarehouse
-        // Hint: Review the UML diagram of the Controller class... you need to call a method here
-        //       Review the code of the class to figure it out
+        // Hint: Review the UML diagram of the Controller class... you need to call a
+        // method here
+        // Review the code of the class to figure it out
         // WRITE YOUR CODE BELOW THIS LINE
         Controller.createAddItemToWarehouse(fiuNorthWarehouse, 10);
-
 
         System.out.println("---------------------------------------");
         System.out.println("Step 7");
@@ -157,23 +139,19 @@ public class Controller {
         // if it is not working correctly fix your displayInfo() code
 
         // CODE TO UNCOMMENT
-
-
-
+        fiuNorthWarehouse.displayInfo();
 
         System.out.println("---------------------------------------");
         System.out.println("Step 8");
         System.out.println("---------------------------------------");
         System.out.println();
 
-        // creating  a Driver instance
+        // creating a Driver instance
         Random rndGen = new Random();
         int firstNameIndex = rndGen.nextInt(Names.firstNames.length);
         int lastNameIndex = rndGen.nextInt(Names.lastNames.length);
         int maxAge = 70;
         int minAge = 20;
-
-
 
         // Use the maxAge and minAge variables to create a
         // random age is between 70-20
@@ -182,24 +160,20 @@ public class Controller {
         // for above
         // Hint: use nextInt() on the rndGen variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        int age = rndGen.nextInt(minAge, maxAge);
 
         // Now create a new Driver instance named driver1 with the
         // firstNameIndex, lastNameIndex, age
         // Hint: use the firstNameIndex, lastNameIndex with the Name class
-        //       to get the random names
+        // to get the random names
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        Driver driver1 = new Driver(Names.firstNames[firstNameIndex], Names.lastNames[lastNameIndex], age);
 
         System.out.println();
 
         // Call the display method on the driver1 variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
-
+        driver1.display();
 
         System.out.println("---------------------------------------");
         System.out.println("Step 9");
@@ -209,12 +183,11 @@ public class Controller {
         // Create a Truck instance named truck1 using the
         // driver1 variable and a load capacity of 5
         // WRITE YOUR CODE BELOW THIS LINE
-
+        Truck truck1 = new Truck(driver1, 5);
 
         // Call the display method on the driver1 variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        driver1.display();
 
         System.out.println("---------------------------------------");
         System.out.println("Step 10");
@@ -225,10 +198,10 @@ public class Controller {
         // You need to write the loadTruck() method in the truck1 first
 
         // WRITE YOUR CODE BELOW THIS LINE
+        truck1.loadTruck(fiuNorthWarehouse, 7);
 
-
-        //Load truck1 with 5 items from fiuNorthWarehouse
-
+        // Load truck1 with 5 items from fiuNorthWarehouse
+        truck1.loadTruck(fiuNorthWarehouse, 5);
 
         System.out.println("---------------------------------------");
         System.out.println("Step 11");
@@ -237,14 +210,13 @@ public class Controller {
 
         // Call the displayInfo method on fiuNorthWarehouse variable
         // WRITE YOUR CODE BELOW THIS LINE
-
+        fiuNorthWarehouse.displayInfo();
 
         System.out.println();
 
         // Call the displayCargo method on truck1 variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        truck1.displayCargo();
 
         System.out.println("---------------------------------------");
         System.out.println("Step 12");
@@ -256,17 +228,15 @@ public class Controller {
         // You need to write the code for this method in the truck class
         // the method shell is already there
         // WRITE YOUR CODE BELOW THIS LINE
-
+        truck1.unloadTruck(fiuSouthWarehouse);
 
         // Call the displayCargo method on the truck1 variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        truck1.displayCargo();
 
         // Call the displayInfo method on the fiuSouthWarehouse variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        fiuSouthWarehouse.displayInfo();
 
         System.out.println("---------------------------------------");
         System.out.println("Step 13");
@@ -275,45 +245,40 @@ public class Controller {
 
         // Load truck1 with 5 items from fiuNorthWarehouse
         // WRITE YOUR CODE BELOW THIS LINE
-
+        truck1.loadTruck(fiuNorthWarehouse, 5);
 
         // Unload the truck1 to the fiuSouthWarehouse
         // WRITE YOUR CODE BELOW THIS LINE
-
+        truck1.unloadTruck(fiuSouthWarehouse);
 
         // Call the displayInfo method on the fiuSouthWarehouse variable
         // WRITE YOUR CODE BELOW THIS LINE
-
-
+        fiuSouthWarehouse.displayInfo();
 
         // Call the displayInfo method on fiuNorthWarehouse variable
         // WRITE YOUR CODE BELOW THIS LINE
-
+        fiuNorthWarehouse.displayInfo();
 
         // Call the displayCargo method on truck1 variable
         // WRITE YOUR CODE BELOW THIS LINE
+        truck1.displayCargo();
 
-
-
-    }//end main
-
+    }// end main
 
     // ------------------------------------------------------
 
-    public static void createAddItemToWarehouse(Warehouse warehouse, int numberOfItemsToCreate){
+    public static void createAddItemToWarehouse(Warehouse warehouse, int numberOfItemsToCreate) {
 
-        for(int i=1; i<= numberOfItemsToCreate; i++){
+        for (int i = 1; i <= numberOfItemsToCreate; i++) {
             Item item = new Item();
-            warehouse.getItems().add(item);             // understand this
-        }//end for
+            warehouse.getItems().add(item); // understand this
+        } // end for
 
     }
 
     // ------------------------------------------------------
 
-
-
-    public static void yourInfoHeader(){
+    public static void yourInfoHeader() {
 
         System.out.println("======================================");
         System.out.println(" Student Info Header");
@@ -334,6 +299,6 @@ public class Controller {
         System.out.println("======================================");
         System.out.println();
 
-    }//end yourInfoHeader
+    }// end yourInfoHeader
 
-}//end class
+}// end class
