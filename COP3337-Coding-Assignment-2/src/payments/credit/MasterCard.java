@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+
+import javax.naming.ldap.Rdn;
+
 import reports.CreditCardReport;
 import reports.FinancialReport;
 import reports.PersonReport;
@@ -143,7 +146,28 @@ System.out.println("//////////////////////////////////////////////");
          // generate card number
         // Hint: use a do - while  loop here
         // YOUR CODE HERE
-        
+        int CARD_LENGTH = 16;
+        String cardNumber = "";
+        do {
+            // reset var that checks if issued
+            hasBeenIssued = false;
+            // generate card number
+            for (int i = 0; i < CARD_LENGTH; i++) {
+                // check for everytime 4 doesnt leave a remainder
+                cardNumber += i%4==0 ? renGen.nextInt(0,9): " "+renGen.nextInt(0,9);
+            }
+            //check if card number exists
+            for (String issuedNumber : issuedNumbers) {
+                // if there is a match set var to true to try again
+                if(issuedNumber.equals(cardNumber)){
+                    hasBeenIssued = true;
+                }
+            }
+            //if the card has not been issued, add it to the list
+            if(hasBeenIssued){
+                issuedNumbers.add(cardNumber);
+            }
+        } while (hasBeenIssued);
 
         
     }
