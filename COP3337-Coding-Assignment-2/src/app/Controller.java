@@ -108,6 +108,12 @@ System.out.println("//////////////////////////////////////////////");
         // do you have passwords like this ..... :)
 
        // YOUR CODE BELOW THIS LINE
+
+       Person person1 = new Person("Ava", "Davis", "704 Brickell Ave", "Superman", 760);
+
+       Person person2 = new Person("John", "Smith", "340 S.W. 13 Street", "myPassword123", 680);
+
+       Person person3 = new Person("Bill", "Johnson", "100 Ocean Dr. S.W. ", "Mom12345", 530);
        
 /*     
 System.out.println("");
