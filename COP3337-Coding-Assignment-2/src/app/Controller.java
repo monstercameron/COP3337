@@ -34,6 +34,8 @@ import payments.SecureCash;
 import payments.credit.CreditCard;
 import payments.credit.MasterCard;
 import payments.credit.MasterRewards;
+import reports.FinancialReport;
+import reports.PersonReport;
 import reports.Reporter;
 import transactions.SecureTransaction;
 
@@ -115,7 +117,7 @@ System.out.println("//////////////////////////////////////////////");
 
        Person person3 = new Person("Bill", "Johnson", "100 Ocean Dr. S.W. ", "Mom12345", 530);
        
-/*     
+    
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");    
 System.out.println("Section 2");       
@@ -129,20 +131,24 @@ System.out.println("//////////////////////////////////////////////");
        // Create cash instance for Ava -> person1 with $400
        // make sure that you wrote section 2.1 code before writing this code
        // YOUR CODE BELOW THIS LINE
+       Cash cash = new Cash(person1, 400);
        
        
 
        // Create Master Card instance for Ava -> person1 with credit limit of $3500
        // YOUR CODE BELOW THIS LINE
+       MasterCard masterCard = new MasterCard(person1, 3500);
        
   
        // add the cash and master card instance to Ava's wallet
        // YOUR CODE BELOW THIS LINE
-       
+       person1.getWallet().add(cash);
+       person1.getWallet().add(masterCard);
         
 
        // runner a financial report on Ava
        // YOUR CODE BELOW THIS LINE
+       person1.financialReport();
        
    
         
@@ -152,20 +158,25 @@ System.out.println("//////////////////////////////////////////////");
        // Create Master Card instance for John -> person2 with credit limit $500
        // Create Master Reward instance for John -> person2 with credit limit $1500
        // YOUR CODE BELOW THIS LINE
+       Cash cash2 = new Cash(person2, 400);
+       MasterCard masterCard2 = new MasterCard(person2, 500);
+       MasterRewards masterReward2 = new MasterRewards(person2, 1500);
        
        
         
        
        // add the cash, master card and master reward instance to John's wallet
        // YOUR CODE BELOW THIS LINE
-       
+       person2.getWallet().add(cash2);
+       person2.getWallet().add(masterCard2);
+       person2.getWallet().add(masterReward2);
        
        
      
        
        // runner a financial report on John
        // YOUR CODE BELOW THIS LINE
-       
+       person2.financialReport();
        
         
         // Setting up Bill's wallet
@@ -173,24 +184,30 @@ System.out.println("//////////////////////////////////////////////");
        // Create Master Card instance for Bill -> person3 with credit limit $1000
        // Create Master Reward instance for Bill -> person3 with credit limit $1500
        // YOUR CODE BELOW THIS LINE
-       
+       SecureCash cash3 = new SecureCash(person3, 1000);
+       MasterCard masterCard3 = new MasterCard(person3, 1000);
+       MasterRewards masterReward3 = new MasterRewards(person3, 1500);
   
         
        
         // add the secure cash, master card and master reward instance to Bill's wallet
        // YOUR CODE BELOW THIS LINE
+       person3.getWallet().add(cash3);
+       person3.getWallet().add(masterCard3);
+       person3.getWallet().add(masterReward3);
        
    
        
        // runner a financial report on Bill
        // YOUR CODE BELOW THIS LINE
+       person3.financialReport();
        
 
-*/
+
        
        
        
-/*      
+     
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");    
 System.out.println("Section 3.0");       
@@ -198,9 +215,9 @@ System.out.println("//////////////////////////////////////////////");
 
 // GOTO THE MasterCard.java file write the code for Section 3.1
 
-*/
 
-/*
+
+
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");    
 System.out.println("Section 3.2");       
@@ -208,20 +225,38 @@ System.out.println("//////////////////////////////////////////////");
         
             // call the infoReport method on Ava's mastercard
             // YOUR CODE BELOW THIS LINE
+            for (Object o : person1.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        m.infoReport();
+                }
+            }
             
             
             // call the infoReport method on John's mastercard
            // YOUR CODE BELOW THIS LINE
+            for (Object o : person2.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        m.infoReport();
+                }
+            }
             
             
             // call the infoReport method on Bill's master rewards
             // YOUR CODE BELOW THIS LINE
+            for (Object o : person3.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterRewards")){
+                        MasterRewards m = (MasterRewards)o;
+                        m.infoReport();
+                }
+            }
            
             
-/*
+
             
             
-/*
+
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");     
 System.out.println("Section 4");       
@@ -244,7 +279,16 @@ System.out.println("//////////////////////////////////////////////");
         // Use Ava's cash to buy item2
         
        // YOUR CODE BELOW THIS LINE
-  
+        for (Object o : person1.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        m.makePurchase(item1);
+                        m.makePurchase(item2);
+                }else if (o.getClass().getSimpleName().equals("Cash")) {
+                        Cash c = (Cash)o;
+                        c.makePurchase(item2);
+                }
+        }
         
        
         // look at this difference here
@@ -252,10 +296,17 @@ System.out.println("//////////////////////////////////////////////");
         // MAKE USE YOU GOT THE RIGHT CARD I WILL CHECK THIS
         // YOUR CODE BELOW THIS LINE
         
-        ((MasterCard)person1
+        //((MasterCard)person1
+        for (Object o : person1.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        m.makePurchase(item5);
+                }
+        }
         
          // run the person financial report on Ava
          // YOUR CODE BELOW THIS LINE
+         person1.financialReport();
          
   
        
@@ -277,9 +328,24 @@ System.out.println("//////////////////////////////////////////////");
 
 
         // YOUR CODE HERE
+        for (Object o : person2.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        m.makePurchase(item1);
+                        m.makePurchase(item2);
+                        m.makePurchase(item3);
+                        m.makePurchase(item4);
+                }
+        }
         
         // Use John's cash to buy item2
         // YOUR CODE BELOW THIS LINE
+        for (Object o : person2.getWallet()) {
+                if(o.getClass().getSimpleName().equals("Cash")){
+                        Cash m = (Cash)o;
+                        m.makePurchase(item2);
+                }
+        }
         
         // Use John's master rewards to buy item1
         // Use John's master rewards to buy item2
@@ -287,6 +353,16 @@ System.out.println("//////////////////////////////////////////////");
         // Use John's master rewards to buy item4
         // Use John's master rewards to buy item5
         // YOUR CODE BELOW THIS LINE
+        for (Object o : person2.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterRewards")){
+                        MasterRewards m = (MasterRewards)o;
+                        m.makePurchase(item1);
+                        m.makePurchase(item2);
+                        m.makePurchase(item3);
+                        m.makePurchase(item4);
+                        m.makePurchase(item5);
+                }
+        }
 
         
         // look at this difference here
@@ -294,10 +370,17 @@ System.out.println("//////////////////////////////////////////////");
         // MAKE USE YOU GOT THE RIGHT CARD I WILL CHECK THIS
         // COMPLETED CODE BELOW
 
-        ((MasterRewards)person2
+        // ((MasterRewards)person2
+        for (Object o : person2.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterRewards")){
+                        MasterRewards m = (MasterRewards)o;
+                        m.makePurchase(item1);
+                }
+        }
         
          // run the person financial report on John
          // YOUR CODE BELOW THIS LINE
+         person2.financialReport();
          
         
         
@@ -314,23 +397,43 @@ System.out.println("//////////////////////////////////////////////");
         // Use Bill's secure cash to buy item2
         // Use Bill's secure cash to buy item5
         // YOUR CODE BELOW THIS LINE
+        for (Object o : person3.getWallet()) {
+                if(o.getClass().getSimpleName().equals("SecureCash")){
+                        SecureCash m = (SecureCash)o;
+                        m.makePurchase(item1);
+                        m.makePurchase(item2);
+                        m.makePurchase(item5);
+                }
+        }
         
         // Use Bill's master card to buy item4
         // YOUR CODE BELOW THIS LINE
+        for (Object o : person3.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        m.makePurchase(item4);
+                }
+        }
 
 
         // Use Bill's master rewards to buy item3
         // YOUR CODE HERE        
+        for (Object o : person3.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterRewards")){
+                        MasterRewards m = (MasterRewards)o;
+                        m.makePurchase(item3);
+                }
+        }
         
        
 
         // run the person financial report on Bill
         // YOUR CODE BELOW THIS LINE
-     
-*/
+        person3.financialReport();
 
 
-/*
+
+
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");     
 System.out.println("Section 5");       
@@ -351,14 +454,14 @@ System.out.println("//////////////////////////////////////////////");
         //       code to some contsructors
         // COMPLETE CODE BELOW 
                
-        System.out.println("Number of Person in System:\t\t\t" +
-       System.out.println("Number of all Cash type transactions:\t\t" + 
-        System.out.println("Number of all Credit Card type transactions:\t" + 
+        System.out.println("Number of Person in System:\t\t\t" + Person.getPersonCount());
+       System.out.println("Number of all Cash type transactions:\t\t" + Cash.getCashTransactionCount());
+        System.out.println("Number of all Credit Card type transactions:\t" + CreditCard.getCreditTransactionCount());
         System.out.println("---------------------------------------------------");
- */
+ 
  
 
-/*
+
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");     
 System.out.println("Section 6");       
@@ -374,13 +477,14 @@ System.out.println("//////////////////////////////////////////////");
         // write the code to do this
         // HINT: create an Logger  instance and use it
         // YOUR CODE BELOW THIS LINE
-
+        Logger logger = new Logger();
+        processReports(logger);
 
         System.out.println("---------------------------------------------------");
-*/       
+    
 
 
-/*
+
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");     
 System.out.println("Section 7");       
@@ -409,11 +513,25 @@ System.out.println("//////////////////////////////////////////////");
         // YOU NEED FIGURE OUT WHICH CLASSES 
         // Hint: look at the UML Diagrams
         // YOUR CODE HERE
-    
-*/       
+        processReports(person1);
+        processReports(logger);
+        for (Object o : person3.getWallet()) {
+                if(o.getClass().getSimpleName().equals("SecureCash")){
+                        SecureCash s = (SecureCash)o;
+                        processReports(s);
+                }
+        }
+        for (Object o : person1.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard m = (MasterCard)o;
+                        processReports(m);
+                }
+        }
+        
+   
 
 
-/*
+
 System.out.println("");
 System.out.println("//////////////////////////////////////////////");     
 System.out.println("Section 8");       
@@ -445,9 +563,22 @@ System.out.println("//////////////////////////////////////////////");
         // YOU WILL NEED TO ADD CODE THE NEED CLASSES IN THIS STEP TO MAKE IT WORK
         // YOU NEED FIGURE OUT WHICH CLASSES 
         // YOUR CODE BELOW THIS LINE
-        
+
+        for (Object o : person1.getWallet()) {
+                if(o.getClass().getSimpleName().equals("MasterCard")){
+                        MasterCard s = (MasterCard)o;
+                        processSecureTransaction(s);
+                }
+        }
+        for (Object o : person3.getWallet()) {
+                if(o.getClass().getSimpleName().equals("SecureCash")){
+                        SecureCash s = (SecureCash)o;
+                        processSecureTransaction(s);
+                }
+        }
+
    
-*/
+
 
     }// end main()
     

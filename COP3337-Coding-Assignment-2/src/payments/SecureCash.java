@@ -9,7 +9,7 @@ import reports.Reporter;
 import transactions.SecureTransaction;
 
 
-public class SecureCash extends Cash {
+public class SecureCash extends Cash implements Reporter, SecureTransaction{
     
     // DO NOT CHANGE THE ACCESS MODIFIERS ANWHERE
     // I WILL TAKE A LOT OF POINT OFF IF YOU DO
@@ -107,12 +107,16 @@ public class SecureCash extends Cash {
         
          String pin = "";
          
-         //YOUR CODE BELOW HERE
-         
-
+        //YOUR CODE BELOW HERE
+        Person identity = super.getPerson();
+        String lastName = identity.getLastName();
+        String lastNameSlice = lastName.substring(0,4);
+        for (char letter : lastNameSlice.toCharArray()) {
+            pin += (String.join("",letterIndex).trim().indexOf(letter)+1)%10;
+        }
        
         //debugging code
-       // System.out.println("Pin:\t" + pin);
+    //    System.out.println("Pin:\t" + pin);
         
         return pin;
      }

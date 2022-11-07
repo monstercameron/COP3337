@@ -9,9 +9,10 @@ import payments.credit.MasterCard;
 import reports.FinancialReport;
 import reports.PersonReport;
 import reports.Reporter;
+import transactions.SecureTransaction;
 
 
-public class Person{
+public class Person implements Reporter{
     // DO NOT CHANGE THE ACCESS MODIFIERS NAYWHERE
     // I WILL TAKE A LOT OF POINT OFF IF YOU DO
    
@@ -47,7 +48,7 @@ public class Person{
         
 
         wallet = new ArrayList<>();
-
+        personCount++;
 
 
     }    

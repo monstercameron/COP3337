@@ -11,16 +11,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
-import javax.naming.ldap.Rdn;
-
 import reports.CreditCardReport;
-import reports.FinancialReport;
-import reports.PersonReport;
 import reports.Reporter;
 import transactions.SecureTransaction;
 
 
-public class MasterCard  extends CreditCard {
+public class MasterCard  extends CreditCard implements Reporter, SecureTransaction {
     
     // DO NOT CHANGE THE ACCESS MODIFIERS NAYWHERE
     // I WILL TAKE A LOT OF POINT OFF IF YOU DO
@@ -108,12 +104,12 @@ System.out.println("//////////////////////////////////////////////");
         boolean hasBeenIssued = false;
         
         cardNumber = "";
-/*        
-System.out.println("");
-System.out.println("//////////////////////////////////////////////");    
-System.out.println("Section 3.1");       
-System.out.println("//////////////////////////////////////////////");  
-      */
+      
+        System.out.println("");
+        System.out.println("//////////////////////////////////////////////");    
+        System.out.println("Section 3.1");       
+        System.out.println("//////////////////////////////////////////////");  
+            
         
         
         // you need to write code that creates 
@@ -147,15 +143,15 @@ System.out.println("//////////////////////////////////////////////");
         // Hint: use a do - while  loop here
         // YOUR CODE HERE
         int CARD_LENGTH = 16;
-        String cardNumber = "";
         do {
             // reset var that checks if issued
             hasBeenIssued = false;
             // generate card number
             for (int i = 0; i < CARD_LENGTH; i++) {
                 // check for everytime 4 doesnt leave a remainder
-                cardNumber += i%4==0 ? renGen.nextInt(0,9): " "+renGen.nextInt(0,9);
+                cardNumber += i%4!=0 ? renGen.nextInt(0,9): " "+renGen.nextInt(0,9);
             }
+            cardNumber = cardNumber.trim();
             //check if card number exists
             for (String issuedNumber : issuedNumbers) {
                 // if there is a match set var to true to try again
@@ -169,7 +165,6 @@ System.out.println("//////////////////////////////////////////////");
             }
         } while (hasBeenIssued);
 
-        
     }
     
     protected  void fees(){
@@ -337,9 +332,12 @@ System.out.println("//////////////////////////////////////////////");
         String pin = "";
         
         // YOUR CODE BELOW HERE
+        for (String grouping : this.cardNumber.split(" ")) {
+            pin+=grouping.charAt(0);
+        }
         
         //debugging code
-       // System.out.println("Pin:\t" + pin);
+    //    System.out.println("Pin:\t" + pin);
        
         return pin;
      }
