@@ -17,7 +17,7 @@ public class App {
                     System.out.flush();
                     System.out.println(
                             "Brute force attemtps #" + ++bruteForceAttempts + " | X,Y,Z == " + x + ", " + y + ", " + z);
-                    sequence = generateSequence(20, x, y, z);
+                    sequence = generateSequence(20, sequenceGroup1, x, y, z);
                     found = sequenceMatch(sequenceGroup1, sequence);
                     if (found) {
                         System.out.println("Combination found! X,Y,Z == " + x + ", " + y + ", " + z);
@@ -73,12 +73,13 @@ public class App {
         }
     }
 
-    public static int[] generateSequence(int length, int x, int y, int z) {
+    public static int[] generateSequence(int length, int[] sequenceGroup1, int x, int y, int z) {
         System.out.println("Generating Sequneces...");
         int[] sequence = new int[length];
         for (int i = 0; i < length; i++) {
             int result = recursive(i + 1, x, y, z);
             sequence[i] = result;
+            // speed up by discarding unmatches indices in sequence
             if (sequenceGroup1[i] != result)
                 break;
         }
@@ -89,6 +90,7 @@ public class App {
         boolean result = true;
         for (int i = 0; i < a.length; i++) {
             System.out.printf("%-20s%s%n", "A --> " + a[i], "\t\tB --> " + b[i]);
+            // speed up by immediate returning false if an index doesn't match
             if (a[i] != b[i]) {
                 System.out.println("Sequences don't match, match count: " + i);
                 result = false;
