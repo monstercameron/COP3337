@@ -1,12 +1,11 @@
 public class App {
 
-    static int[] sequenceGroup1 = new int[] { 1, 1, 2, -3, 50, -460, 4519, -44001, 428941,
-            -4180844, 40751117, -397204218, -423386306,
-            918100829, -1545525547, 1110963229, 1243701550,
-            -239385059, -1594015946, -337862588 };
-
     public static void main(String[] args) throws Exception {
         System.out.println("Recursive stuff!");
+        int[] sequenceGroup1 = new int[] { 1, 1, 2, -3, 50, -460, 4519, -44001, 428941,
+                -4180844, 40751117, -397204218, -423386306,
+                918100829, -1545525547, 1110963229, 1243701550,
+                -239385059, -1594015946, -337862588 };
         int bruteForceAttempts = 0;
         boolean found = false;
         int[] sequence;
